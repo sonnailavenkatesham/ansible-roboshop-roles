@@ -1,0 +1,36 @@
+- name: check user roboshop exist or not
+  ansible.builtin.command: id roboshop
+  register: output
+  ignore_errors: yes
+
+- when: output.rc != 0
+  name: add user name called rooboshop
+  ansible.builtin.user:
+    name: roboshop
+
+- name: check /app directory is exists ir not
+  ansible.builtin.stat:
+    path: /app
+  register: directory
+  ignore_errors: yes
+
+- name: print the output of stat
+  ansible.builtin.debug:
+    msg: "output: {{directory}}"
+
+- when: directory.stat.exists == False
+  name: create /app directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Unarchive a file that is already on the remote machine i.e zipfile
+  ansible.builtin.unarchive:
+    src: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+    dest: /app
+    remote_src: yes
+
+- name: install npm dependencies
+  ansible.builtin.command: npm install
+  args:
+    chdir: /app
