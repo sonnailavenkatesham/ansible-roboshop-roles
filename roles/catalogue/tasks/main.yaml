@@ -13,15 +13,7 @@
     name: common
     tasks_from: daemon-setup
 
-- name: copy mongo.repo
-  ansible.builtin.copy:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
-
-- name: install mongodb-org-shell -y
-  ansible.builtin.yum:
-    name: mongodb-org-shell
-    state: installed
-
-- name: schema setup
-  ansible.builtin.shell: mongo --host mongodb.venkateshamsonnalia143.online < /app/schema/catalogue.js
+- name: load the schema setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: schema-setup
