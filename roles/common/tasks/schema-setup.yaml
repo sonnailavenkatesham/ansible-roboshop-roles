@@ -9,4 +9,4 @@
     state: installed
 
 - name: connect to mongo server
-  ansible.builtin.shell: mongo --host mongodb.venkateshamsonnalia143.online </app/schema/{{component}}.js
+  ansible.builtin.command: mongo --host mongodb.venkateshamsonnalia143.online < /app/schema/{{component}}.js
