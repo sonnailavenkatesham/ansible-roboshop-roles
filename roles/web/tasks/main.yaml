@@ -3,22 +3,10 @@
     name: nginx
     state: installed
 
-- name: Enable and start nginx
-  ansible.builtin.service:
-    name: nginx
-    enabled: yes
-    state: started
-    ignore_errors: true
-
 - name: Recursively remove directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
-
-- name: Recursively remove directory
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: directory
     
 - name: download web artifact
   ansible.builtin.get_url:
@@ -36,7 +24,8 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
-- name: restart nginx
+- name: Enable and start nginx
   ansible.builtin.service:
     name: nginx
-    state: restarted
+    enabled: yes
+    state: started
