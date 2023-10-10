@@ -8,24 +8,23 @@
     name: common
     tasks_from: user-app-dependencies
 
-- name: copy the catalogue service
-  ansible.builtin.copy:
-    src: catalogue.service
-    dest: /etc/systemd/system/catalogue.service
+- name: system daemon-reload
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: copy-services
 
 - name: system daemon-reload
   ansible.builtin.import_role:
     name: common
-    tasks_from: daemon-reload
-
-- name: enable and start
-  ansible.builtin.service:
-    name: catalogue
-    state: started
-    enabled: true
+    tasks_from: daemon-setup
 
 - name: copy mongo.repo
   ansible.builtin.copy:
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
+
+- name: install mongodb-org-shell -y
+  ansible.builtin.yum:
+    name: mongodb-org-shell -y
+    state: installed
 
