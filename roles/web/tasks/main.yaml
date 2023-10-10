@@ -6,7 +6,7 @@
 - name: enable and statrt nginx
   ansible.builtin.service:
     name: nginx
-    enabled: true
+    enabled: yes
     state: started
 
 - name: remove the file
