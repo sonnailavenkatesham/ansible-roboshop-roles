@@ -6,19 +6,29 @@
 - name: start the nginx
   ansible.builtin.service:
     name: nginx
-    state: started
+    state: started  
 
 - name: remove the Remove the default content that web server is serving.
   ansible.builtin.file:
     path: /usr/share/nginx/html/*
     state: absent
 
-- name: Download the zipfile
+- name: Recursively remove directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Recursively remove directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+    
+- name: download web artifact
   ansible.builtin.get_url:
     url: https://roboshop-builds.s3.amazonaws.com/web.zip
     dest: /tmp
 
-- name: Unarchive a file that is already on the remote machine
+- name: unzip or extract artifact
   ansible.builtin.unarchive:
     src: /tmp/web.zip
     dest: /usr/share/nginx/html
