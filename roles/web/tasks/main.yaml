@@ -1,26 +1,19 @@
-- name: Installing nginx
+- name: install nginx
   ansible.builtin.yum:
     name: nginx
-    state: latest
+    state: installed
 
-- name: Recursively remove directory
+- name: remove the Remove the default content that web server is serving.
   ansible.builtin.file:
-    path: /usr/share/nginx/html
+    path: /usr/share/nginx/html/*
     state: absent
 
-- name: unzip or extract artifact
+- name: Unarchive a file that is already on the remote machine
   ansible.builtin.unarchive:
     src: https://roboshop-builds.s3.amazonaws.com/web.zip
-    dest: /usr/share/nginx/html
+    dest: /tmp/web.zip
     remote_src: yes
 
-- name: copy the roboshop.conf
-  ansible.builtin.copy:
-    src: roboshop.conf
-    dest: /etc/nginx/default.d/roboshop.conf
-
-- name: Enable and start nginx
-  ansible.builtin.service:
-    name: nginx
-    enabled: yes
-    state: started
+- name: copy the configuration
+  ansible.bi=uiltin.copy:
+    src: 
