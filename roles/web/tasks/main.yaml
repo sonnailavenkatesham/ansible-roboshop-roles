@@ -7,15 +7,10 @@
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
-    
-- name: download web artifact
-  ansible.builtin.get_url:
-    url: https://roboshop-builds.s3.amazonaws.com/web.zip
-    dest: /tmp
 
 - name: unzip or extract artifact
   ansible.builtin.unarchive:
-    src: /tmp/web.zip
+    src: https://roboshop-builds.s3.amazonaws.com/web.zip
     dest: /usr/share/nginx/html
     remote_src: yes
 
