@@ -3,12 +3,12 @@
     name: nginx
     state: installed
 
-- name: enable and statrt nginx
+- name: Enable and start nginx
   ansible.builtin.service:
     name: nginx
     enabled: yes
     state: started
-
+    
 - name: remove the file
   ansible.builtin.file:
     path: /usr/share/nginx/html/*
