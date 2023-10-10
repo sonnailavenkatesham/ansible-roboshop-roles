@@ -3,6 +3,11 @@
     name: nginx
     state: installed
 
+- name: start the nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+
 - name: remove the Remove the default content that web server is serving.
   ansible.builtin.file:
     path: /usr/share/nginx/html/*
@@ -27,5 +32,4 @@
 - name: enable and restart nginx
   ansible.builtin.service:
     name: nginx
-    enabled: yes
     state: restarted
