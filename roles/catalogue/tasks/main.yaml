@@ -20,6 +20,8 @@
 
 - name: install mongodb-org-shell -y
   ansible.builtin.yum:
-    name: mongodb-org-shell -y
+    name: mongodb-org-shell
     state: installed
 
+- name: schema setup
+  ansible.builtin.shell: mongo --host mongodb.venkateshamsonnalia143.online < /app/schema/catalogue.js
