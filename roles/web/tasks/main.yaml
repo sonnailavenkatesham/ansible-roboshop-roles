@@ -1,7 +1,7 @@
 - name: Installing nginx
   ansible.builtin.yum:
     name: nginx
-    state: installed
+    state: latest
 
 - name: Recursively remove directory
   ansible.builtin.file:
