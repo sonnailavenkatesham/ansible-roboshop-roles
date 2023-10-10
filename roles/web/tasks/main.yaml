@@ -9,7 +9,7 @@
     state: absent
 
 - name: Download the zipfile
-  ansible.builtin.get_rul:
+  ansible.builtin.get_url:
     url: https://roboshop-builds.s3.amazonaws.com/web.zip
     dest: /tmp
 
