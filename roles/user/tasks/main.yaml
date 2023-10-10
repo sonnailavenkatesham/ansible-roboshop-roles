@@ -1,0 +1,29 @@
+- name:  script to setup the repos.
+  ansible.builtin.shell: 'curl -sL https://rpm.nodesource.com/setup_lts.x | bash'
+
+- name: install nodeJS
+  ansbile.builtin.import_role:
+    name: common
+    tasks_from: NodeJS
+
+- name: App setup and install dependencies
+  ansible.builtin.import_role:
+    name: common 
+    tasks_from: user-app-dependencies
+
+- name: daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Schema Set-up
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: schema-setup
+
+- name: enable and restarted
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: daemon-setup
+
+
+
