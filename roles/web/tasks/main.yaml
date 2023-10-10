@@ -8,10 +8,15 @@
     path: /usr/share/nginx/html/*
     state: absent
 
+- name: Download the zipfile
+  ansible.builtin.get_rul:
+    url: https://roboshop-builds.s3.amazonaws.com/web.zip
+    dest: /tmp
+
 - name: Unarchive a file that is already on the remote machine
   ansible.builtin.unarchive:
-    src: https://roboshop-builds.s3.amazonaws.com/web.zip
-    dest: /tmp/web.zip
+    src: /tmp/web.zip
+    dest: /usr/share/nginx/html
     remote_src: yes
 
 - name: copy the configuration
