@@ -1,0 +1,14 @@
+- name: install NodeJS
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: NodeJS
+
+- name: check user roboshop exits and  app directory exits
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: user-app-dependencies
+
+- name: system daemon-reload
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: daemon-setup

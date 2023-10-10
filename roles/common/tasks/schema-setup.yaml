@@ -3,10 +3,10 @@
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
 
-- name: install mongodb-org-shell -y
+- name: install mongodb-org-shell
   ansible.builtin.yum:
     name: mongodb-org-shell
     state: installed
 
 - name: connect to mongo server
-  ansible.builtin.command: mongo --host mongodb.venkateshamsonnalia143.online < /app/schema/{{component}}.js
+  ansible.builtin.shell: mongo --host mongodb.venkateshamsonnalia143.online < /app/schema/{{component}}.js
