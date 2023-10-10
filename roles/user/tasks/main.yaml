@@ -2,7 +2,7 @@
   ansible.builtin.shell: 'curl -sL https://rpm.nodesource.com/setup_lts.x | bash'
 
 - name: install nodeJS
-  ansbile.builtin.import_role:
+  ansible.builtin.import_role:
     name: common
     tasks_from: NodeJS
 
