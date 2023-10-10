@@ -26,7 +26,7 @@
 
 - name: Unarchive a file that is already on the remote machine i.e zipfile
   ansible.builtin.unarchive:
-    src: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+    src: https://roboshop-builds.s3.amazonaws.com/{{component}}.zip
     dest: /app
     remote_src: yes
 
