@@ -4,10 +4,10 @@
     state: installed
 
 - name: Enable and start nginx
-  ansible.builtin.service:
-    name: nginx
-    enabled: yes
-    state: started
+  ansible.builtin.command: systemctl enable nginx
+
+- name: Enable and start nginx
+ansible.builtin.command: systemctl start nginx
 
 - name: Recursively remove directory
   ansible.builtin.file:
