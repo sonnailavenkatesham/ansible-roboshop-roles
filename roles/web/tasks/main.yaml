@@ -3,10 +3,11 @@
     name: nginx
     state: installed
 
-- name: Enable and start nginx
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: daemon-setup
+- name: restart nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enabled: yes
 
 - name: Recursively remove directory
   ansible.builtin.file:
