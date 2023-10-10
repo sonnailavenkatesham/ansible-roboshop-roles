@@ -1,7 +1,7 @@
 - name: copy mongo.repo
   ansible.builtin.import_role:
     name: common
-    tasks_from: mongo.repo
+    tasks_from: mongo
 
 - name: install mongodb-org 
   ansible.builtin.yum:
